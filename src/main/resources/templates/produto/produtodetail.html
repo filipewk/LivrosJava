@@ -10,6 +10,8 @@
                 <h1>Nome: <span th:text="${produto.nome}">Nome do produto</span></h1>
                 <h1>Autor: <span th:text="${produto.autor}">Nome do autor</span></h1>
                 <img th:src="${produto.imagem}" alt="imagem">
+                <br>
+                <a class="btn btn-dark" th:href="@{'/produto/edit/' + *{produto.id}}">Editar</a>
             </div>
         </div>
     </div>

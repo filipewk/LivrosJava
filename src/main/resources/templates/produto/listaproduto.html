@@ -7,8 +7,10 @@
         <div class="card mt-3">
             <div class="card-body">
                 <div th:each="produto : ${lista}">
-                    <h1 th:text="${produto.nome}">Título</h1>
-                    <h2 th:text="${produto.autor}">Autor</h2>
+                    <h1 class="title">Titulo: <a th:href="@{'produto/' + ${produto.id}}">
+                        <span th:text="${produto.nome}">Nome</span>
+                    </a> </h1>
+                    <h th:text="${produto.autor}">Autor</h>
                     <img th:src="${produto.imagem}" alt="imagem">
                     <br>
                 </div>
