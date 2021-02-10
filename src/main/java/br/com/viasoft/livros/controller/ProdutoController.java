@@ -34,6 +34,13 @@ public class ProdutoController {
         return "produto/listaproduto";
     }
 
+    @GetMapping("/produto/edit/{id}")
+    public String editaProduto(@PathVariable("id") Long id, ProdutoFormularioDTO produtoFormularioDTO, Model model) {
+        Produto p1 = produtoService.findById(id).orElse(null);
+        model.addAttribute("produto", p1);
+        return "produto/editproduto";
+    }
+
     @GetMapping("/produto/{id}")
     public String listaProdutoById(@PathVariable("id") Long id, Model model) {
         Produto p1 = produtoService.findById(id).orElse(null);

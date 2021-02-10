@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: base(~{::title}, ~{:: #conteudo})}" lang="pt-br">
+<head>
+    <title>Clientes</title>
+</head>
+<body>
+    <div id="conteudo">
+        <form th:action="@{/login}" method="post">
+            <label for="">Nome de usuario:</label>
+            <input name="username" type="text" placeholder="nomedeusuario">
+            <label for="">Senha:</label>
+            <input name="password" type="password" placeholder="********">
+            <button type="submit">Logar</button>
+        </form>
+    </div>
+</body>
+</html>
