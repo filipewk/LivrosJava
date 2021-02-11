@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: base(~{::title}, ~{:: #conteudo})}" lang="pt-br">
+<head>
+    <title>Produto by id</title>
+<body>
+    <div id="conteudo">
+        <div class="card mt-3">
+            <div class="card-body">
+                <h1>ID: <span th:text="${cliente.id}"></span></h1>
+                <h1>Nome: <span th:text="${cliente.nome}">NOME</span></h1>
+                <h1>CPF: <span th:text="${cliente.cpf}">CPF</span></h1>
+                <h1>EMAIL: <span th:text="${cliente.email}">EMAIL</span></h1>
+                <h1>ENDEREÇO: <span th:text="${cliente.endereco}">ENDERECO</span></h1>
+
+                <br>
+                <a class="btn btn-dark" th:href="@{'/cliente/edit/' + *{cliente.id}}">Editar</a>
+                <a class="btn btn-outline-primary" th:href="@{'/cliente'}">Voltar</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

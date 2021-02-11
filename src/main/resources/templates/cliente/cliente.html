@@ -10,7 +10,11 @@
             <div class="card-body">
                 <h2>Clientes:</h2>
                 <div th:each="cliente : ${lista}">
-                    <h4>Nome: <span th:text="${cliente.nome}">NOME</span> </h4>
+                    <p>ID: <span th:text="${cliente.id}">ID</span></p>
+                    <h4 class="title">Nome: <a th:href="@{'/cliente/' + ${cliente.id}}">
+                        <span th:text="${cliente.nome}">Nome</span>
+                    </a> </h4>
+
                     <h4>CPF: <span th:text="${cliente.cpf}">CPF</span> </h4>
                     <h4>Email: <span th:text="${cliente.email}">EMAIL</span> </h4>
                     <h4>Endereço: <span th:text="${cliente.endereco}">ENDERECO</span> </h4>
