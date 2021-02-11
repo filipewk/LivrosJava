@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //               .and().cors().disable();
 
                .authorizeRequests()
-               .antMatchers("/produto/delete/**").authenticated()
+               .antMatchers("/**/delete/**").authenticated()
                .anyRequest().permitAll()
                .and().formLogin().loginPage("/login").permitAll()
                .and().csrf().ignoringAntMatchers("/h2-console/**")

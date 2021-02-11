@@ -4,6 +4,8 @@ import br.com.viasoft.livros.dto.ClienteFormularioDTO;
 import br.com.viasoft.livros.model.Cliente;
 import br.com.viasoft.livros.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ClienteController {
@@ -72,8 +76,13 @@ public class ClienteController {
     }
 
     @GetMapping("cliente/delete/{id}")
-    public String removeCliente(@PathVariable("id") Long id) {
-        clienteService.delete(id);
-        return "redirect:/cliente/";
+    public String removeCliente(@PathVariable("id") Long id, Principal principal) {
+        var roles = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        List<String> cargos = roles.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+        if (cargos.get(0).equals("ROLE_ADM")){
+            clienteService.delete(id);
+            return "redirect:/cliente/";
+        }
+        return "redirect:/cliente/edit/" + id;
     }
 }
