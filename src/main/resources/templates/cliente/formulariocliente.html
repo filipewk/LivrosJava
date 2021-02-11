@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                     <label for="email">Email: </label>
-                    <input th:field="*{email}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="email@email.com"/>
+                    <input th:field="*{email}" th:errorclass="is-invalid" class="form-control" type="email" placeholder="email@email.com"/>
                     <span class="small">Insira um email.</span>
                     <div th:errors="*{email}" class="alert alert-danger"></div>
                 </div>

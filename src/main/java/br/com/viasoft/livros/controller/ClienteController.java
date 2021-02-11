@@ -41,7 +41,7 @@ public class ClienteController {
     public String formCliente(@Valid ClienteFormularioDTO clienteDTO, BindingResult result) {
         Cliente cliente = clienteDTO.toCliente();
         clienteService.save(cliente);
-        return "redirect:/cliente";
+        return "redirect:/cliente/" + cliente.getId();
     }
 
     @GetMapping("/cliente/edit/{id}")

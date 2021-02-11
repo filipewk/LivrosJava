@@ -1,11 +1,13 @@
 package br.com.viasoft.livros.service.impl;
 
+import br.com.viasoft.livros.event.ClientePresave;
 import br.com.viasoft.livros.model.Cliente;
 import br.com.viasoft.livros.model.Produto;
 import br.com.viasoft.livros.repository.ClienteRepository;
 import br.com.viasoft.livros.service.ClienteService;
 import framework.CrudServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,11 @@ import java.util.List;
 public class ClienteServiceImpl extends CrudServiceImpl<Cliente, Long> implements ClienteService {
 
     @Autowired
-    ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ApplicationEventPublisher appPublisher;
+
 
     @Override
     public JpaRepository<Cliente, Long> getRepository() {
@@ -30,4 +36,8 @@ public class ClienteServiceImpl extends CrudServiceImpl<Cliente, Long> implement
         return result;
     }
 
+    @Override
+    public void preSave(Cliente cliente) {
+        appPublisher.publishEvent(new ClientePresave(this, cliente));
+    }
 }
